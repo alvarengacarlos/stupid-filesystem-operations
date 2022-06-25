@@ -9,7 +9,7 @@ if (!fileSystem.existsSync(ROOT_PATH)) {
 
 const CLOUD_PATH = path.resolve(ROOT_PATH, "cloud");
 if (!fileSystem.existsSync(CLOUD_PATH)) {
-	throw new Error("The path does not exists");
+	throw new Error("The cloud dir does not exists");
 }
 
 module.exports = {ROOT_PATH, CLOUD_PATH};
