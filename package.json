@@ -1,0 +1,32 @@
+{
+  "name": "stupid-filesystem-operations",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "node ./src/index.js",
+    "test": "mocha --recursive ./test/unit",
+    "lint": "eslint ./src ./test --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvarengacarlos/stupid-filesystem-operations.git"
+  },
+  "keywords": [
+    "filesystem",
+    "nodejs"
+  ],
+  "author": "Carlos Henrique Alvarenga Dos Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alvarengacarlos/stupid-filesystem-operations/issues"
+  },
+  "homepage": "https://github.com/alvarengacarlos/stupid-filesystem-operations#readme",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^8.18.0",
+    "mocha": "^10.0.0"
+  }
+}
