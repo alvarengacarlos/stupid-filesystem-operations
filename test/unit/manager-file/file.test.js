@@ -6,7 +6,7 @@ const fileSystem = require("fs");
 const {CLOUD_PATH} = require("../../../src/utils/constants");
 
 
-const {createFile, removeFile, updateFileName, copyFile, setFilePermission} = require("../../../src/manager-file/file");
+const {createFile, removeFile, updateFileName, copyFile, setFilePermission, showFiles} = require("../../../src/manager-file/file");
 
 describe("manager-file/file.js", () => {
 
@@ -75,6 +75,25 @@ describe("manager-file/file.js", () => {
 			expect(() => {
 				setFilePermission(filename, ["r", "w", "x"], ["r"], [""]);
 			}).to.not.throw(Error);
+		});
+
+	});
+
+	describe("showFiles", () => {
+
+		it("given none file when executed the function then it must return an empty array", () => {
+			const files = showFiles();
+			
+			expect(files).to.be.empty;
+		});
+
+		it("given a file created in the cloud directory when executed the function then it must return an array with a value", () => {
+			const absolutePath = path.resolve(CLOUD_PATH, filename);
+			fileSystem.writeFileSync(absolutePath, "");
+
+			const files = showFiles();
+			
+			expect(files.length).to.eql(1);
 		});
 
 	});

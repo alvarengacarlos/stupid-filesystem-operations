@@ -265,10 +265,19 @@ function translatesPermissionToPosix(permissions) {
 	return sum;
 }
 
+/**
+ * 
+ * @returns String[]
+ */
+function showFiles() {
+	return fileSystem.readdirSync(pathToSaveFiles);
+}
+
 module.exports = {
 	createFile,
 	removeFile,
 	updateFileName,
 	copyFile,
-	setFilePermission
+	setFilePermission,
+	showFiles
 };
