@@ -52,7 +52,8 @@ const charactersNotAllowedInTheFilename = [
 	"6",
 	"7",
 	"8",
-	"9"
+	"9",
+	" "
 ];
 
 function createFile(filename) {    
@@ -126,8 +127,21 @@ function updateFileName(oldFilename, newFilename) {
 	fileSystem.renameSync(oldCompletePath, newCompletePath);
 }
 
+function copyFile(filename) {
+	checkCharacterNotAllowedInTheFilename(filename);
+
+	checkFileExtension(filename);
+
+	checkIfFilenameNotExists(filename, pathToSaveFiles);
+    
+	const completePath = path.resolve(pathToSaveFiles, filename);
+	const completePathToCopy = path.resolve(pathToSaveFiles, "copy-".concat(filename));
+	fileSystem.copyFileSync(completePath, completePathToCopy);
+}
+
 module.exports = {
 	createFile,
 	removeFile,
-	updateFileName
+	updateFileName,
+	copyFile
 };

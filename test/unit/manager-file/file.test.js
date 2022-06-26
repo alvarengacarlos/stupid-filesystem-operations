@@ -6,7 +6,7 @@ const fileSystem = require("fs");
 const {CLOUD_PATH} = require("../../../src/utils/constants");
 
 
-const {createFile, removeFile, updateFileName} = require("../../../src/manager-file/file");
+const {createFile, removeFile, updateFileName, copyFile} = require("../../../src/manager-file/file");
 
 describe("manager-file/file.js", () => {
 
@@ -47,6 +47,21 @@ describe("manager-file/file.js", () => {
 			expect(() => {
 				updateFileName("oldFilename.txt", filename);
 			}).to.not.throw(Error);
+		});
+
+	});
+
+	describe("copyFile", () => {
+
+		it("given a filename when executed the function then it must create a copy", () => {
+			const absolutePath = path.resolve(CLOUD_PATH, filename);
+			fileSystem.writeFileSync(absolutePath, "");
+
+			expect(() => {
+				copyFile(filename);				
+			}).to.not.throw(Error);
+
+			fileSystem.rmSync(path.resolve(CLOUD_PATH, "copy-".concat(filename)));
 		});
 
 	});
