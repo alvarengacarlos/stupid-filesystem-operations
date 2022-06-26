@@ -6,7 +6,7 @@ const fileSystem = require("fs");
 const {CLOUD_PATH} = require("../../../src/utils/constants");
 
 
-const {createFile, removeFile, updateFileName, copyFile} = require("../../../src/manager-file/file");
+const {createFile, removeFile, updateFileName, copyFile, setFilePermission} = require("../../../src/manager-file/file");
 
 describe("manager-file/file.js", () => {
 
@@ -62,6 +62,19 @@ describe("manager-file/file.js", () => {
 			}).to.not.throw(Error);
 
 			fileSystem.rmSync(path.resolve(CLOUD_PATH, "copy-".concat(filename)));
+		});
+
+	});
+
+	describe("setFilePermission", () => {
+
+		it("given permissions and a filename when executed the function then it must change permissions", () => {
+			const absolutePath = path.resolve(CLOUD_PATH, filename);
+			fileSystem.writeFileSync(absolutePath, "");
+
+			expect(() => {
+				setFilePermission(filename, ["r", "w", "x"], ["r"], [""]);
+			}).to.not.throw(Error);
 		});
 
 	});
