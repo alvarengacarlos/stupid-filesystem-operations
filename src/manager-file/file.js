@@ -112,7 +112,22 @@ function checkIfFilenameNotExists(filename, pathToSave) {
 	}
 }
 
+function updateFileName(oldFilename, newFilename) {
+	checkCharacterNotAllowedInTheFilename(oldFilename);
+	checkFileExtension(oldFilename);
+	checkIfFilenameNotExists(oldFilename, pathToSaveFiles);
+
+	checkCharacterNotAllowedInTheFilename(newFilename);
+	checkFileExtension(newFilename);
+	checkIfFilenameExists(newFilename, pathToSaveFiles);
+
+	const oldCompletePath = path.resolve(pathToSaveFiles, oldFilename);
+	const newCompletePath = path.resolve(pathToSaveFiles, newFilename);
+	fileSystem.renameSync(oldCompletePath, newCompletePath);
+}
+
 module.exports = {
 	createFile,
-	removeFile
+	removeFile,
+	updateFileName
 };

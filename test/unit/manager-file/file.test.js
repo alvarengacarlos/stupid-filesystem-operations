@@ -6,7 +6,7 @@ const fileSystem = require("fs");
 const {CLOUD_PATH} = require("../../../src/utils/constants");
 
 
-const {createFile, removeFile} = require("../../../src/manager-file/file");
+const {createFile, removeFile, updateFileName} = require("../../../src/manager-file/file");
 
 describe("manager-file/file.js", () => {
 
@@ -34,6 +34,19 @@ describe("manager-file/file.js", () => {
 			expect(() => {
 				removeFile(absolutePath);
 			}).to.not.throw(Error);			
+		});
+
+	});
+
+	describe("updateFilename", () => {
+
+		it("given a old filename and a new filename when executed the function then it must update the filename in the cloud dir", () => {
+			const absolutePath = path.resolve(CLOUD_PATH, "oldFilename.txt");
+			fileSystem.writeFileSync(absolutePath, "");
+
+			expect(() => {
+				updateFileName("oldFilename.txt", filename);
+			}).to.not.throw(Error);
 		});
 
 	});
