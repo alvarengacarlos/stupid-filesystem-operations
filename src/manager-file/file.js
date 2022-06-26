@@ -92,6 +92,27 @@ function checkIfFilenameExists(filename, pathToSave) {
 	}
 }
 
+function removeFile(filename) {
+	checkCharacterNotAllowedInTheFilename(filename);
+
+	checkFileExtension(filename);
+
+	checkIfFilenameNotExists(filename, pathToSaveFiles);
+
+	const completePath = path.resolve(pathToSaveFiles, filename);
+	fileSystem.rmSync(completePath);
+}
+
+function checkIfFilenameNotExists(filename, pathToSave) {
+	const completePath = path.resolve(pathToSave, filename);
+	const exists = fileSystem.existsSync(completePath);
+    
+	if (!exists) {
+		throw new Error("The filename not exists");
+	}
+}
+
 module.exports = {
-	createFile
+	createFile,
+	removeFile
 };
