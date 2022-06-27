@@ -3,7 +3,7 @@
 ## __Get start__
 This tutorial assumes that you have a Docker and Docker Compose installed on your computer.
 
-1. Create the __cloud__ empty directory in the application root path like the image.
+1. Create the __cloud__ empty directory in the application root path like the image. Copy the `env-example` file and rename it to `.env`.
 
 ![](docs/img/cloud_dir.png)
 
